@@ -14,6 +14,7 @@ from aws_lambda_builders.validator import RuntimeValidator
 from aws_lambda_builders.registry import DEFAULT_REGISTRY
 from aws_lambda_builders.exceptions import WorkflowFailedError, WorkflowUnknownError, MisMatchRuntimeError
 from aws_lambda_builders.actions import ActionFailedError
+from aws_lambda_builders.workflows.sanitizer import Sanitizer
 
 LOG = logging.getLogger(__name__)
 
@@ -244,6 +245,7 @@ class BaseWorkflow(six.with_metaclass(_WorkflowMetaClass, object)):
         self._binaries = binaries
 
     @sanitize
+    # @Sanitizer
     def run(self):
         """
         Actually perform the build by executing registered actions.
